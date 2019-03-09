@@ -11,7 +11,7 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "sudo ./calidad-del-aire-cloud/scripts/deploy_project.sh"
+      - run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "./deploy.sh"
 
 workflows:
   version: 2
