@@ -1,0 +1,1 @@
+exports.test = (req, res) => res.json({ msg: 'User Test Works' });

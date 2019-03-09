@@ -3,12 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const example = require('./src/routes/example');
+
+// Routes
+const users = require('./src/routes/user')
 
 // Mongoose client setup
 function connectToMongoose() {
@@ -31,8 +33,9 @@ function connectToMongoose() {
 
 function initRoutes() {
   app.use('/example', example);
+  app.use('/users', users);
 
   app.listen(5000, () => console.log('Listening on port 5000'));
 }
 
-setTimeout(connectToMongoose, 15000);
+process.env.ISDEV ? connectToMongoose() : setTimeout(connectToMongoose, 15000);
